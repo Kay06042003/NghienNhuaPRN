@@ -1,0 +1,99 @@
+@model Earphone
+@{
+    ViewData["Title"] = "EditEarphone";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Type:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="earphone_type" name="type_earphone" value="@Model.EarType">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Plug:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="earphone_plug" name="plug_earphone" value="@Model.EarPlug">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Compatibility:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="earphone_compatibility" name="compatibility_earphone"
+            value="@Model.EarCompatibility">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Wire length:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="earphone_wirelength" name="wirelength_earphone"
+            value="@Model.EarWireLength">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Utility:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="earphone_utility" name="utility_earphone" value="@Model.EarUtility">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Connect:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="earphone_connect" name="connect_earphone" value="@Model.EarConnect">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Control:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="earphone_control" name="control_earphone" value="@Model.EarControl">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Charging port:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="earphone_chargingport" name="chargingport_earphone"
+            value="@Model.EarChargingPort">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Connect tech:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="earphone_connecttech" name="connecttech_earphone"
+            value="@Model.EarConnectTech">
+        <div class="form-message"></div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+@model KeyBoard
+@{
+    ViewData["Title"] = "EditKeyboard";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Led:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keyboard_led" name="led_keyboard" value="@Model.KbLed">
+        <div class="form-message text-start"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Mode:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keyboard_mode" name="mode_keyboard" value="@Model.KbMode">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Switch:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keyboard_switch" name="switchType_keyboard" value="@Model.KbSwitch">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Keycap:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keyboard_keycap" name="keycapType_keyboard" value="@Model.KbKeycap">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Plate:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keyboard_plate" name="plate_keyboard" value="@Model.KbPlate">
+        <div class="form-message"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Case:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keyboard_case" name="case_keyboard" value="@Model.KbCase">
+        <div class="form-message"></div>
+    </div>
+</div>

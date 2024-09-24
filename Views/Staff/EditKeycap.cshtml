@@ -1,0 +1,44 @@
+@model Keycap;
+@{
+    ViewData["Title"] = "EditKeycap";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Chất liệu:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keycap_material" name="material_key_cap" value="@Model.KcMaterial">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Layout:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keycap_layout" name="layout_keycap" value="@Model.KcLayout">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Độ dày:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keycap_thickness" name="thickness_keycap"
+            value="@Model.KcThickness">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Độ bền:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="keycap_durability" name="durability_keycap"
+            value="@Model.KcReliability">
+        <div class="form-message"></div>
+    </div>
+</div>

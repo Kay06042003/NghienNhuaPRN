@@ -1,0 +1,51 @@
+@model Kit
+@{
+    ViewData["Title"] = "EditKit";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Layout:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="kit_layout" name="layout_kit" value="@Model.KitLayout">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Mạch:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="kit_circuit" name="circuit_kit" value="@Model.KitCircuit">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Plate:</label>
+
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="kit_plate" name="plate_kit" value="@Model.KitPlate">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Mode:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="kit_mode" name="mode_kit" value="@Model.KitMode">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Case:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="kit_case" name="case_kit" value="@Model.KitCase">
+        <div class="form-message"></div>
+    </div>
+</div>

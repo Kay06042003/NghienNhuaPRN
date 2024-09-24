@@ -1,0 +1,321 @@
+@model staff
+@{
+    ViewData["Title"] = "EditStaff";
+    Layout = "~/Views/Shared/_LayoutStaffMana.cshtml";
+}
+
+<div class="container-fluid bg-light" style="border-radius: 10px">
+    <div class="container p-5">
+        <div>
+            <h2>Edit</h2>
+            <p>Staff</p>
+            <hr class="bg-danger border-1 border-top border-dark" />
+        </div>
+
+        <form method="post" id="form" action="AdminController" enctype="multipart/form-data"
+            class="row my-4 g-3 needs-validation d-flex justify-content-center" novalidate>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Staff ID:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="staff_id" name="txtStaff_Id"
+                        value="@Model.StaffId" disabled="">
+                    <input type="hidden" class="form-control" id="staff_id" name="hidden_Id"
+                        value="@Model.StaffId">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Staff Email:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="staff_email" name="txtStaff_Email"
+                        value="@ViewBag.Account.AccGmail" disabled="">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Họ và tên:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="staff_fullName" name="txtStaff_FullName"
+                        value="@Model.StaffFullname">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between" >
+                <div class="col-auto">
+                    <label for="exampleFormControlTextarea1" class="form-label">Giới tính:</label>
+                </div>
+                <div class="col-md-10" style="display: flex; gap: 40px; padding: 0 0 0 32px;">
+                    <input class="form-check-input" type="radio" name="txtStaff_Gender" value="Nam"
+                        id="flexRadioDefault1" @( Model.StaffGender.Equals("Nam")? "checked" : "" ) >
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Nam
+                    </label>
+                    <span style="margin-left: 10px">
+                        <input class="form-check-input" type="radio" name="txtStaff_Gender" value="Nữ"
+                            id="flexRadioDefault2" @( Model.StaffGender.Equals("Nữ")? "checked" : "" ) >
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Nữ
+                        </label>
+                    </span>
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Số điện thoại:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="staff_phone" name="txtStaff_Phone"
+                        value="@Model.StaffPhoneNumber">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Địa chỉ:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="staff_address" name="txtStaff_Address"
+                        value="@Model.StaffAddress">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+                    <div class=" col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlTextarea1" class="form-label">Ngày Sinh:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="date" class="form-control" id="staff_birthday" name="txtStaff_Birthday"
+                        value="@(Model.StaffDateOfBirth.HasValue ? Model.StaffDateOfBirth.Value.ToString("dd/MM/yyyy") : "")">
+                    <div class="form-message text-start"></div>
+                </div>
+    </div>
+
+
+
+    <div class="col-md-9 row my-2 d-flex justify-content-between">
+        <div class="col-auto">
+            <label for="exampleFormControlInput1" class="form-label">Số CCCD:</label>
+        </div>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="staff_citizenIdentityNumber"
+                name="txtStaff_CitizenIdentityNumber" value="@Model.StaffCitizenIdentityNumber">
+            <div class="form-message text-start"></div>
+        </div>
+    </div>
+
+    <div class="col-md-9 row my-2 d-flex justify-content-between">
+        <div class="col-auto">
+            <label for="exampleFormControlInput1" class="form-label">Lương:</label>
+        </div>
+        <div class="col-md-10">
+            <input type="text" class="form-control" id="staff_salary" name="txtStaff_Salary"
+                value="@(int.Parse(Model.StaffSalary).ToString("N0"))">
+            <div class="form-message text-start"></div>
+        </div>
+    </div>
+
+
+    <div id="fields" class="row  d-flex justify-content-center"></div>
+    <div class="col-12 my-2 d-flex justify-content-center gap-2">
+        <input type="submit" value="Cập nhật" name="btnEditStaff" class="btn btn-primary" />
+        <a href="/Admin/ListStaff">
+            <button type="button" class="btn btn-danger" name="btnBack"> Trở về </button>
+        </a>
+    </div>
+    </form>
+</div>
+</div>
+
+@section Scripts {
+    <script>
+    // Lấy giá trị từ input và chuyển đổi sang định dạng YYYY-MM-DD
+    var dateString = "06/04/2003"; // Ngày tháng cần chuyển đổi
+    var parts = dateString.split("/");
+    var formattedDate = parts[2] + "-" + parts[1].padStart(2, '0') + "-" + parts[0].padStart(2, '0');
+    
+    // Gán giá trị đã được chuyển đổi vào thuộc tính value của input
+    document.getElementById("staff_birthday").value = formattedDate;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector('#form');
+            const staff_email = document.getElementById('staff_email');
+            const staff_pwd = document.getElementById('staff_pwd');
+            const staff_fullName = document.getElementById('staff_fullName');
+            const staff_phone = document.getElementById('staff_phone');
+            const staff_address = document.getElementById('staff_address');
+            const staff_birthday = document.getElementById('staff_birthday');
+            const staff_citizenIdentityNumber = document.getElementById('staff_citizenIdentityNumber');
+            const staff_salary = document.getElementById('staff_salary');
+
+            const setError = (element, message) => {
+                const inputControl = element.parentElement;
+                const errorDisplay = inputControl.querySelector('.form-message');
+                errorDisplay.innerText = message;
+                inputControl.classList.add('error');
+                inputControl.classList.remove('success');
+            };
+            const setSuccess = element => {
+                const inputControl = element.parentElement;
+                const errorDisplay = inputControl.querySelector('.form-message');
+                errorDisplay.innerText = '';
+                inputControl.classList.add('success');
+                inputControl.classList.remove('error');
+            };
+            const isValidNumber = number => {
+                const regex = /^[0-9]*\.?[0-9]+$/;
+                return regex.test(String(number).toLowerCase());
+            };
+            const isValidPhoneNumber = phone => {
+                const regex = /^(0|\+84)(\s|\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\d)(\s|\.)?(\d{3})(\s|\.)?(\d{3})$/;
+                return regex.test(String(phone).toLowerCase());
+            };
+
+            const isValidEmail = email => {
+                const regex = /^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                return regex.test(String(email).toLowerCase());
+            };
+            const validateInputs = () => {
+                const staff_emailValue = staff_email.value.trim();
+                const staff_pwdValue = staff_pwd.value.trim();
+                const staff_fullNameValue = staff_fullName.value.trim();
+                const staff_phoneValue = staff_phone.value.trim();
+                const staff_addressValue = staff_address.value.trim();
+                const staff_birthdayValue = staff_birthday.value.trim();
+                const staff_citizenIdentityNumberValue = staff_citizenIdentityNumber.value.trim();
+                const staff_salaryValue = staff_salary.value.trim();
+                let hasError = false;
+
+                if (staff_emailValue === '') {
+                    staff_email.classList.add('invalid');
+                    staff_email.classList.remove('valid');
+                    setError(staff_email, 'Email không được để trống');
+                    hasError = true;
+                } else if (!isValidEmail(staff_emailValue)) {
+                    staff_email.classList.add('invalid');
+                    staff_email.classList.remove('valid');
+                    setError(staff_email, 'Email không hợp lệ ');
+                    hasError = true;
+                } else {
+                    staff_email.classList.remove('invalid');
+                    staff_email.classList.add('valid');
+                    setSuccess(staff_email);
+                }
+
+                if (staff_pwdValue === '') {
+                    staff_pwd.classList.add('invalid');
+                    staff_pwd.classList.remove('valid');
+                    setError(staff_pwd, 'Mật khẩu không được để trống');
+                    hasError = true;
+                } else {
+                    staff_pwd.classList.remove('invalid');
+                    staff_pwd.classList.add('valid');
+                    setSuccess(staff_pwd);
+                }
+
+                if (staff_fullNameValue === '') {
+                    staff_fullName.classList.add('invalid');
+                    staff_fullName.classList.remove('valid');
+                    setError(staff_fullName, 'Họ và tên không được để trống');
+                    hasError = true;
+                } else {
+                    staff_fullName.classList.remove('invalid');
+                    staff_fullName.classList.add('valid');
+                    setSuccess(staff_fullName);
+                }
+
+                if (staff_phoneValue === '') {
+                    staff_phone.classList.add('invalid');
+                    staff_phone.classList.remove('valid');
+                    setError(staff_citizenIdentityNumber, 'Số điện thoại không được để trống');
+                    hasError = true;
+                } else if (!isValidPhoneNumber(staff_phoneValue)) {
+                    staff_phone.classList.add('invalid');
+                    staff_phone.classList.remove('valid');
+                    setError(staff_phone, 'Số điện thoại không hợp lệ');
+                    hasError = true;
+                } else {
+                    staff_phone.classList.remove('invalid');
+                    staff_phone.classList.add('valid');
+                    setSuccess(staff_phone);
+                }
+
+                if (staff_addressValue === '') {
+                    staff_address.classList.add('invalid');
+                    staff_address.classList.remove('valid');
+                    setError(staff_address, 'Địa chỉ không được để trống');
+                    hasError = true;
+                } else {
+                    staff_address.classList.remove('invalid');
+                    staff_address.classList.add('valid');
+                    setSuccess(staff_address);
+                }
+
+                if (staff_birthdayValue === '') {
+                    staff_birthday.classList.add('invalid');
+                    staff_birthday.classList.remove('valid');
+                    setError(staff_birthday, 'Ngày sinh không được để trống');
+                    hasError = true;
+                } else {
+                    staff_birthday.classList.remove('invalid');
+                    staff_birthday.classList.add('valid');
+                    setSuccess(staff_birthday);
+                }
+
+                if (staff_citizenIdentityNumberValue === '') {
+                    staff_citizenIdentityNumber.classList.add('invalid');
+                    staff_citizenIdentityNumber.classList.remove('valid');
+                    setError(staff_citizenIdentityNumber, 'Số CCCD không được để trống');
+                    hasError = true;
+                } else if (!isValidNumber(staff_citizenIdentityNumberValue)) {
+                    staff_citizenIdentityNumber.classList.add('invalid');
+                    staff_citizenIdentityNumber.classList.remove('valid');
+                    setError(staff_citizenIdentityNumber, 'Số CCCD không hợp lệ');
+                    hasError = true;
+                } else {
+                    staff_citizenIdentityNumber.classList.remove('invalid');
+                    staff_citizenIdentityNumber.classList.add('valid');
+                    setSuccess(staff_citizenIdentityNumber);
+                }
+
+
+                if (staff_salaryValue === '') {
+                    staff_salary.classList.add('invalid');
+                    staff_salary.classList.remove('valid');
+                    setError(staff_salary, 'Lương không được để trống');
+                    hasError = true;
+                } else if (!isValidNumber(staff_salaryValue)) {
+                    staff_salary.classList.add('invalid');
+                    staff_salary.classList.remove('valid');
+                    setError(staff_salary, 'Lương không hợp lệ');
+                    hasError = true;
+                } else {
+                    staff_salary.classList.remove('invalid');
+                    staff_salary.classList.add('valid');
+                    setSuccess(staff_salary);
+                }
+                return !hasError;
+            }
+                ;
+            form.addEventListener('submit', function (e) {
+                if (!validateInputs()) {
+                    e.preventDefault(); // Ngăn chặn biểu mẫu gửi đi nếu có lỗi
+                }
+            });
+        }
+        );
+    </script>
+}

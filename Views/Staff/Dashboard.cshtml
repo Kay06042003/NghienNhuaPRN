@@ -1,0 +1,93 @@
+@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<ul class="notifications"></ul>
+<h1 class="text-center">List of Products</h1>
+<a href="/Staff/Create"><button type="button" class="btn btn-primary mb-2">Create New</button></a>
+<div>
+    <table id="example" class="table table-hover  table-bordered dataTable dtr-inline col-sm-12">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Picture</th>
+                <th>Description</th>
+                <th>Discount</th>
+                <th>Date</th>
+                <th>Category Name</th>
+                <th>Brand</th>
+                <th>Origin</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                @using Nghien_Nhua.MyUtil;
+                ConvertFunction instance = new ConvertFunction();
+                foreach (var item in Model)
+                {
+                    string image = item.ProImage.Split('&')[0];
+                    string result = "";
+                    if (item.ProDescription.Length > 100)
+                    {
+                        result = item.ProDescription.Substring(0, 100) + "...";
+                    }
+                    else
+                    {
+                        result = item.ProDescription;
+                    }
+                    <tr>
+                        <td>
+                            @item.ProId
+                        </td>
+                        <td>
+                            @item.ProName
+                        </td>
+                        <td>
+                            @item.ProQuantity
+                        </td>
+                        <td>
+                            @instance.converterNumber(item.ProPrice)
+                        </td>
+                        <td>
+                            <img src="~/Images/Product/@image" alt="" style="width: 60px" />
+                        </td>
+                        <td>
+                            @result
+                        </td>
+                        <td>
+                            @item.ProDiscount
+                        </td>
+                        <td>
+                            @item.ProDate
+                        </td>
+                        <td>
+                            @item.ProCategory
+                        </td>
+                        <td>
+                            @item.ProBrand
+                        </td>
+                        <td>
+                            @item.ProOrigin
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-controller="Staff" asp-route-id="@item.ProId"><button type="button"
+                                    class="btn btn-success m-2">Edit</button></a>
+                            <a onclick="return confirm('Are you sure?')" asp-action="Delete" asp-controller="Staff"
+                                asp-route-id="@item.ProId" class="btn
+                                                                            btn-danger link-delete">Delete</a>
+
+                        </td>
+                    </tr>
+
+                }
+
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,89 @@
+@model IEnumerable<staff>
+@{
+    ViewData["Title"] = "ListStaff";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid bg-light">
+    <div class="mb-3 mt-3 py-3">
+        <h1 class="text-center">List of Staff</h1>
+        <a href="/Admin/AddStaff"><button type="button" class="btn btn-primary mb-2">Create
+                New</button></a>
+        <div>
+            <table id="example" class="table table-hover  table-bordered dataTable dtr-inline col-sm-12">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Gender</th>
+                        <th>Phone number</th>
+                        <th>Address</th>
+                        <th>Date of birth</th>
+                        <th>Citizen Identity Number</th>
+                        <th>Salary</th>
+                        <th>Status</th>
+                        <th>Day Join</th>
+                        <th>Day Out</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var Model in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Model.StaffId
+                            </td>
+                            <td>
+                                @Model.StaffFullname
+                            </td>
+                            <td>
+                                @Model.StaffGender
+                            </td>
+                            <td>
+                                @Model.StaffPhoneNumber
+                            </td>
+                            <td>
+                                @Model.StaffAddress
+                            </td>
+                            <td>
+                                @Model.StaffDateOfBirth
+                            </td>
+                            <td>
+                                @Model.StaffCitizenIdentityNumber
+                            </td>
+                            <td>
+                                @{ var salary = int.Parse(Model.StaffSalary);}
+                                @(salary.ToString("N0"))
+                            </td>
+                            <td>
+                                @Model.StaffStatus
+                            </td>
+                            <td>
+                                @(Model.StaffDayJoin.HasValue ? Model.StaffDayJoin.Value.ToString("dd/MM/yyyy") : "")
+                            </td>
+                            <td>
+                                 @(Model.SftaffDayOut.HasValue ? Model.SftaffDayOut.Value.ToString("dd/MM/yyyy") : "")
+                            </td>
+                            <td>
+                                <a asp-action="EditStaff" asp-controller="Admin" asp-route-id="@Model.StaffId"><button
+                                        type="button" class="btn btn-success mb-1">Edit</button></a>
+                                @if (Model.StaffStatus == "Working")
+                                {
+                                    <a onclick="return confirm('Are you sure?')"
+                                        asp-action="Delete"  asp-controller="Admin" asp-route-id="@Model.StaffId"
+                                        class="btn btn-danger link-delete mb-1">Delete</a>
+                                }
+                                else
+                                {
+                                    <a onclick="return confirm('Are you sure?')" asp-action="Recover"  asp-controller="Admin" asp-route-id="@Model.StaffId" class="btn btn-info link-delete">Recover</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

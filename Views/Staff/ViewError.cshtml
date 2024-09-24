@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "ViewError";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+        <p class="fs-3"> <span class="text-danger">Opps!</span> @ViewData["Message"] </p>
+        <a href="/Staff/Dashboard" class="btn btn-primary">Quay lại</a>
+    </div>
+</div>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Nghien_Nhua</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" asp-append-version="true" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+
+    <link rel="stylesheet" asp-append-version="true" href="~/css/listProductCss.css">
+    <link rel="stylesheet" asp-append-version="true" href="~/css/stylePayment.css">
+    <link rel="stylesheet" asp-append-version="true" href="~/css/notificationCss.css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="h-100">
+                <div class="sidebar-logo">
+                    <a href="#">Nghiện Chúa</a>
+                </div>
+                <!-- Sidebar Navigation -->
+                <ul class="sidebar-nav">
+                    <li class="sidebar-item">
+                        <a href="/Staff/Dashboard" class="sidebar-link">
+                            <i class="fa-solid fa-list pe-2"></i>
+                            DashBoard
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pages"
+                            aria-expanded="false" aria-controls="pages">
+                            <i class="fa-regular fa-file-lines pe-2"></i>
+                            Đơn Hàng
+                        </a>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a asp-controller="Staff" asp-action="ConfirmOrder" class="sidebar-link">Duyệt Đơn
+                                    Hàng</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard"
+                            aria-expanded="false" aria-controls="dashboard">
+                            <i class="fa-solid fa-sliders pe-2"></i>
+                            Thống kê
+                        </a>
+                        <ul id="dashboard" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a asp-controller="Staff" asp-action="StatisticsDay" class="sidebar-link">Thống Kê Theo
+                                    Ngày</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a asp-controller="Staff" asp-action="StatisticsMonth" class="sidebar-link">Thống Kê
+                                    Theo Tháng</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a asp-controller="Staff" asp-action="StatisticsYear" class="sidebar-link">Thống Kê Theo
+                                    Năm</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                            data-bs-target="#dashboards" aria-expanded="false" aria-controls="dashboard">
+                            <i class="bi bi-activity"></i>
+                            Phân tích
+                        </a>
+                        <ul id="dashboards" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a asp-controller="Staff" asp-action="Analysis" class="sidebar-link">Analysis</a>
+                            </li>
+                        </ul>
+                    </li>
+                    @{
+                        @using Microsoft.AspNetCore.Http;
+                        string role = Context.Session.GetString("role");
+                        if (role.Equals("3"))
+                        {
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#pagess"
+                                    aria-expanded="false" aria-controls="pages">
+                                    <i class="fa-regular fa-user pe-2"></i>
+                                    Quản lý nhân viên
+                                </a>
+                                <ul id="pagess" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+
+                                    <li class="sidebar-item">
+                                        <a asp-controller="Admin" asp-action="AddStaff" class="sidebar-link">Thêm tài
+                                            khoản</a>
+                                    </li>
+
+                                    <li class="sidebar-item">
+                                        <a asp-controller="Admin" asp-action="ListStaff" class="sidebar-link">Danh sách
+                                            tài khoản nhân
+                                            viên</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                    }
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
+                            aria-expanded="false" aria-controls="auth">
+                            <i class="fa-regular fa-user pe-2"></i>
+                            Setting
+                        </a>
+                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a asp-action="Index" asp-controller="Product" class="sidebar-link">Trang mua hàng</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a asp-action="Logout" asp-controller="Account" class="sidebar-link">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+
+            </div>
+        </aside>
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <!-- Button for sidebar toggle -->
+                <button class="btn" type="button" data-bs-theme="dark">
+                    <span><i class="fa-solid fa-bars" style="color: #e9ecef;"></i></span>
+
+                </button>
+            </nav>
+            <div class="container-fluid bg-light">
+                <div class="mb-3 mt-3 py-3">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="~/js/notification.js" asp-append-version="true"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    @RenderSection("Scripts", required: false)
+    @* @{
+    @using Microsoft.AspNetCore.Http
+    String status = Context.Session.GetString("status");
+    }
+    <script>
+    createToast("@status");
+    </script>
+    @{
+    Context.Session.SetString("status", "");
+    } *@
+</body>
+
+</html>

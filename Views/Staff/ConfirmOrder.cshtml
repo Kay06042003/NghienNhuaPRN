@@ -1,0 +1,131 @@
+@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "ConfirmOrder";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<ul class="notifications"></ul>
+<div class="main" style=" width: 100%; height: auto; padding-bottom: 50px; border-radius: 10px">
+    <div class="text-center pt-2">
+        <h2>Thông tin đơn hàng</h2>
+    </div>
+    @{
+        List<OrderDetail> list = ViewBag.OrderDetails;
+        List<Product> products = ViewBag.Products;
+        foreach (var item in Model)
+        {
+            var orderDetails = list.Where(x => x.OrderId == item.OrderId).ToList();
+            var total = 0;
+            foreach (var detail in orderDetails)
+            {
+                total += (detail.OdQuantity ?? 0 ) * int.Parse(detail.OdPrice);
+            }
+            <div class="container" style=" height: auto;">
+                <form action="OrderController" method="post">
+                    <div class="row">
+                        <div class="col-md-7 left" style="border: none;">
+                            <div class="container information">
+                                <h3 class="text-dark">THÔNG TIN THANH TOÁN</h3>
+                                <div class="nameUser row">
+                                    <label class="form-label " for="name">Tên</label>
+                                    <input readonly="" type="text" class="form-control-sm name" id="name"
+                                        value="@item.OrderName" name="txtName">
+                                </div>
+                                <div class="PhoneUser row">
+                                    <label class="form-label" for="phone">Số điện thoại</label>
+                                    <input readonly="" type="text" class="form-control-sm" id="phone" value="@item.OrderPhoneNumber"
+                                        name="txtPhone">
+                                </div>
+                                <div class="mailUser row">
+                                                        <label class="form-label" for="mail">Địa chỉ email</label>
+                                                        <input readonly="" type="text" class="form-control-sm" id="mail"
+                                                            value="@item.OrderEmail" name="txtEmail">
+                                </div>
+                                                    <div class="nationalUser row">
+                                                        <label class="form-label" for="name">Quốc gia/Khu vực</label>
+                                                        <span>Việt Nam</span>
+                                                    </div>
+                                                    <div class="addressUser row">
+                                                        <label class="form-label" for="address">Địa chỉ</label>
+                                                        <input readonly="" type="text" class="form-control-sm" id="address"
+                                                            value="@item.OrderAddress" name="txtAddress">
+                                                    </div>
+                                </div>  
+                        </div>     
+                                <div class="col-md-5 right">
+                                                <div class="container paySlide">
+                                                    <h3> ĐƠN HÀNG CỦA BẠN</h3>
+                                                    <table class="table totalTable">
+                                                        <thead>
+                                                            <tr class="amoutTable">
+                                                                <th class="sp">
+                                                                    SẢN PHẨM
+                                                                </th>
+                                                                <th class="tamTinh">
+                                                                    TẠM TÍNH
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="productShow">
+                                                            @foreach(var detail in orderDetails){
+                                                                Product product = products.Where(x => x.ProId == detail.ProId).FirstOrDefault();
+                                                                <tr class="productShow-Items">
+                                                                    <td class="productShow-Items-Names">
+                                                                        @product.ProName <strong> x @detail.OdQuantity
+                                                                            </strong>
+                                                                    </td>
+                                                                    <td class="productShow-Items-Price">₫ @detail.OdPrice
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr class="amoutTable">
+                                                                    <td>Tạm tính</td>
+                                                                    <td class="totalBefore">
+                                                                        ₫@total.ToString("N0")
+                                                                    </td>
+                                                            </tr>
+                                                            <tr class="shipmountTable">
+                                                                    <th>Giao hàng</th>
+                                                                    <td>
+                                                                        <ul>
+                                                                            <li>
+                                                                                <input type="radio" name="check" id="" value=""
+                                                                                    checked>
+                                                                                <label for=""><span>Đồng giá:
+                                                                                        ₫20,000</span></label>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </td>
+                                                            </tr>
+                                                                <tr class="amoutTable">
+                                                                    <td>
+                                                                        Tổng
+                                                                    </td>
+                                                                    <td class="totalAfter">
+                                                                        ₫@((total + 20000).ToString("N0"))
+                                                                    </td>
+                                                                </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                    <div class="buttonPayment">
+                                                        <a asp-action="Accept-Order" asp-controller="Staff" asp-route-id="@item.OrderId">
+                                                            Xác Nhận Đơn Hàng
+                                                        </a>
+                                                    </div>
+                                                    <br>
+                                                    <div class="buttonPayment">
+                                                        <a asp-action="Reject-Order" asp-controller="Staff" asp-route-id="@item.OrderId">
+                                                            Từ Chối Đơn Hàng
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                </div>
+                            </div>
+                </form>
+            </div>
+        }
+    }
+</div>

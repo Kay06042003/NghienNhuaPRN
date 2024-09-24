@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Nghien_Nhua.props" />
+</Project>

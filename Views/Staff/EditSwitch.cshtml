@@ -1,0 +1,52 @@
+@model Nghien_Nhua.Models.Switch
+@{
+    ViewData["Title"] = "EditSwitch";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Pin:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="switch_pin" name="pin_switch" value="@Model.SwitchPin">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Loại:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="switch_type" name="type_switch" value="@Model.SwitchType">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Lò xò:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="switch_complexity" name="complexity_switch"
+            value="@Model.SwitchSpring">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Độ bền:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="switch_durability" name="durability_switch"
+            value="@Model.SwitchReliability">
+        <div class="form-message"></div>
+    </div>
+</div>
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Hành trình:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="switch_travel" name="travel_switch" value="@Model.SwitchDepth">
+        <div class="form-message"></div>
+    </div>
+</div>

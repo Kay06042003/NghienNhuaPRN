@@ -1,0 +1,90 @@
+@model IEnumerable<Order>
+@{
+    ViewData["Title"] = "StatisticsMonth";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid bg-light" style="border-radius: 10px">
+    <div class="mb-3" style="padding-top: 25px; text-align: center">
+        <h3 style="color: black">Thống Kê Hàng Ngày</h3>
+        <form method="post" action="/Staff/StatisticsMonth">
+            <input type="date" name="dates" required>
+            <input type="submit" name="btnSubmitForDay" value="Report">
+        </form>
+    </div>
+    @{
+        if (Model == null)
+        {
+            <div class="mb-3" style="padding-top: 25px; text-align: center">
+                <h3 style="color: black">Nhập ngày muốn thống kê</h3>
+            </div>
+        }
+        else
+        {
+            <table id="example" style="margin-top: 30px; ">
+                <thead>
+                    <tr>
+                        <th style="color: black">
+                            No
+                        </th>
+                        <th style="color: black">
+                            UserID
+                        </th>
+                        <th style="color: black">
+                            OrderID
+                        </th>
+                        <th style="color: black">
+                            Product Name
+                        </th>
+                        <th style="color: black">
+                            Quantity
+                        </th>
+                        <th style="color: black">
+                            Total Money
+                        </th>
+                        <th style="color: black">
+                            Oder date
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        List<Product> listPro = ViewBag.Products;
+                        List<OrderDetail> listOrderDetail = ViewBag.OrderDetails;
+                        int i = 1;
+                        foreach (var rs in listOrderDetail)
+                        {
+                            Order order = Model.Where(x => x.OrderId == rs.OrderId).FirstOrDefault();
+                            Product pro = listPro.Where(x => x.ProId == rs.ProId).FirstOrDefault();
+                            <tr>
+                                <td style="color: black">
+                                    @i
+                                </td>
+                                <td style="color: black">
+                                    @order.UserId
+                                </td>
+                                <td style="color: black">
+                                    @order.OrderId
+                                </td>
+                                <td style="color: black">
+                                    @pro.ProName
+                                </td>
+                                <td style="color: black">
+                                    @rs.OdQuantity
+                                </td>
+                                <td style="color: black">
+                                    @(int.Parse(rs.OdTotalMoney).ToString("N0"))
+                                </td>
+                                <td style="color: black">
+                                    @(order.OrderDate.ToString("dd/MM/yyyy"))
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+</div>

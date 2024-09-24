@@ -1,0 +1,164 @@
+@model Product
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutEditProduct.cshtml";
+}
+
+<div class="container-fluid bg-light" style="border-radius: 10px">
+    <div class="container p-5">
+        <div>
+            <h2>Edit</h2>
+            <p>Product</p>
+            <hr class="bg-danger border-1 border-top border-dark" />
+        </div>
+
+        <form method="post" id="form" asp-action="Edit" enctype="multipart/form-data"
+            class="row my-4 g-3 needs-validation d-flex justify-content-center" novalidate>
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">ID</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_id" name="txtID" value="@Model.ProId"
+                        disabled="true">
+                    <input type="hidden" name="hiddenID" value="@Model.ProId">
+                    <span asp-validation-for="ProId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Tên sản phẩm:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_name" name="txtName" value="@Model.ProName ">
+                    <span asp-validation-for="ProName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Số lượng:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_quan" name="txtQuantity" value="@Model.ProQuantity">
+                    <span asp-validation-for="ProQuantity" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Giá:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_price" name="txtPrice" value="@Model.ProPrice">
+                    <span asp-validation-for="ProPrice" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="formFile" class="form-label">Hình ảnh:</label>
+                </div>
+                <div class="col-md-10">
+                    @{
+                        string img = Model.ProImage.Split("&")[0];
+                    }
+                    <img src="~/Images/Product/@img" alt="alt" class="img-thumbnail" width="100px">
+
+                    <input class="form-control" type="hidden" id="formFile" value="@img" name="txtPicture2"
+                        multiple="true">
+                    <input class="form-control" type="file" id="formFile" value="img" name="txtPicture" multiple="true">
+                    <span asp-validation-for="ProImage" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlTextarea1" class="form-label">Mô tả:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_des" name="txtDescription"
+                        value="@Model.ProDescription>">
+                    <span asp-validation-for="ProDescription" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Giảm giá:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_dis" name="txtDiscount" value="@Model.ProDiscount">
+                    <span asp-validation-for="ProDiscount" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Hãng:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_brand" name="txtBrand" value="@Model.ProBrand">
+                    <span asp-validation-for="ProBrand" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Xuất xứ:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_origin" name="txtOrigin" value="@Model.ProOrigin">
+                    <span asp-validation-for="ProOrigin" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="category" class="form-label">Loại sản phẩm: </label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtCateName" name="txtCateName"
+                        value="@Model.ProCategory">
+                    <span asp-validation-for="ProCategory" class="text-danger"></span>
+                </div>
+            </div>
+            @if (Model.ProCategory == "Keyboard")
+            {
+                @Html.Partial("EditKeyboard", (KeyBoard)ViewBag.Keyboard)
+            }
+            else if (Model.ProCategory == "Mouse")
+            {
+                @Html.Partial("EditMouse", (Mouse)ViewBag.Mouse)
+            }
+            else if (Model.ProCategory == "Keycap")
+            {
+                @Html.Partial("EditKeycap", (Keycap)ViewBag.Keycap)
+            }
+            else if (Model.ProCategory == "Kit")
+            {
+                @Html.Partial("EditKit", (Kit)ViewBag.Kit)
+            }
+            else if (Model.ProCategory == "Switch")
+            {
+                @Html.Partial("EditSwitch", (Switch)ViewBag.Switch)
+            }
+            else if (Model.ProCategory == "Earphone")
+            {
+                @Html.Partial("EditEarphone", (Earphone)ViewBag.Earphone)
+            }
+            else
+            {
+                @Html.Partial("Dashboard")
+            }
+
+            <div class="col-12 my-2 d-flex justify-content-center gap-2">
+                <input type="submit" value="Update" name="btnUpdate" class="btn btn-primary" />
+                <a href="/Staff/Dashboard">
+                    <button type="button" class="btn btn-danger" name="btnBack"> Back to list</button>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

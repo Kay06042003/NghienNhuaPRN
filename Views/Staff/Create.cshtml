@@ -1,0 +1,124 @@
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutAddProduct.cshtml";
+}
+<div class="container-fluid bg-light" style="border-radius: 10px">
+    <div class="container p-5">
+        <div>
+            <h2>Create New</h2>
+            <p>Product</p>
+            <hr class="bg-danger border-1 border-top border-dark" />
+        </div>
+
+        <form method="post" id="form" asp-action="Create" asp-controller="Staff" enctype="multipart/form-data"
+            class="row my-4 g-3 needs-validation d-flex justify-content-center" novalidate>
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Tên sản phẩm:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_name" name="txtName">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Số lượng:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_quan" name="txtQuantity">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Giá:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_price" name="txtPrice">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="formFile" class="form-label">Hình ảnh:</label>
+                </div>
+                <div class="col-md-10">
+                    <input class="form-control" type="file" id="formFile" name="txtPicture" multiple="true">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlTextarea1" class="form-label">Mô tả:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_des" name="txtDescription">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Giảm giá:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_dis" name="txtDiscount">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Hãng:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_brand" name="txtBrand">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="exampleFormControlInput1" class="form-label">Xuất xứ:</label>
+                </div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="Pro_origin" name="txtOrigin">
+                    <div class="form-message text-start"></div>
+                </div>
+            </div>
+
+            <div class="col-md-9 row my-2 d-flex justify-content-between">
+                <div class="col-auto">
+                    <label for="category" class="form-label">Loại sản phẩm: </label>
+                </div>
+                <div class="col-md-10">
+                    <select class="form-select form-control" aria-label="Default select example" name="txtCateName"
+                        id="category" onchange="showFields()">
+                        <option value="default">-- Chọn --</option>
+                        <option value="Switch">Switch</option>
+                        <option value="Earphone">Earphone</option>
+                        <option value="Keyboard">Keyboard</option>
+                        <option value="Keycap">Keycap</option>
+                        <option value="Kit">Kit</option>
+                        <option value="Mouse">Mouse</option>
+                    </select>
+                    <div class="form-message text-start"></div>
+                </div>
+
+
+            </div>
+            <div id="fields" class="row  d-flex justify-content-center"></div>
+            <div class="col-12 my-2 d-flex justify-content-center gap-2">
+                <input type="submit" value="Create" name="btnAddNew" class="btn btn-primary" />
+                <a href="/Staff/Dashboard">
+                    <button type="button" class="btn btn-danger" name="btnBack">Back to list</button>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

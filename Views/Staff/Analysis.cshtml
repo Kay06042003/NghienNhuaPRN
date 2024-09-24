@@ -1,0 +1,126 @@
+@{
+    ViewData["Title"] = "Analysis";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid bg-light" style="border-radius: 10px; min-height: 680px;">
+    <div class="row my-4">
+        <div class="col-md-12">
+            <div class="row mb-3 mt-3 py-3 px-2">
+                <div class="col-xl-4 mb-4 px-2">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Earnings (Day)</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$@ViewBag.moneyDay
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 mb-4 px-2 ">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Earnings (Total)</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$@(ViewBag.money.ToString("N0"))
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 mb-4 px-2">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Pending Requests</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        @ViewBag.CountOrder1
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 text-center">
+            <div class="bg-light" style="border-radius: 10px">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 text-center">
+            <div class="bg-light" style="border-radius: 10px">
+                <canvas id="myChart2"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        const ctx = document.getElementById('myChart');
+        const canvas = document.getElementById('myChart2');
+        var charData = @ViewBag.ViewDay;
+        var char2Data = @ViewBag.OrderDay;
+        console.log(charData);
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
+                datasets: [{
+                    label: 'Thống kê số lượng truy cập trong tháng',
+                    data: charData,
+                    borderWidth: 1,
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const data = {
+            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
+            datasets: [{
+                label: 'Thống kê số lượng đơn hàng trong tháng',
+                data: char2Data,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.5
+            }]
+        };
+        const config = {
+            type: 'line',
+            data: data,
+        };
+        const chart2 = new Chart(canvas, config)
+
+    </script>
+}

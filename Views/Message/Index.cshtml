@@ -1,0 +1,133 @@
+@model Nghien_Nhua.Models.Message
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutChat.cshtml";
+}
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+
+                <div class="card" id="chat1" style="border-radius: 15px;">
+                    <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
+                        style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+                        <p class="mb-0 fw-bold">Live chat</p>
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="card-body"
+                        style="min-height: 400px;display: flex;flex-direction: column;justify-content: space-around;">
+                        <div class="chatAreaParent">
+
+                            <div class="chatArea">
+                                @* <div class="d-flex flex-row justify-content-start mb-4">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                alt="avatar 1" style="width: 45px; height: 100%;">
+                                <div class="p-3 ms-3"
+                                style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                                <p class="small mb-0">Hello and thank you for visiting MDBootstrap. Please click
+                                the
+                                video
+                                below.</p>
+                                </div>
+                                </div>
+                                <div class="d-flex flex-row justify-content-end mb-4">
+                                <div class="p-3 me-3 border"
+                                style="border-radius: 15px; background-color: #fbfbfb;">
+                                <p class="small mb-0">Thank you, I really like your product.</p>
+                                </div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                alt="avatar 1" style="width: 45px; height: 100%;">
+                                </div>
+                                <div class="d-flex flex-row justify-content-end mb-4">
+                                <div class="p-3 me-3 border"
+                                style="border-radius: 15px; background-color: #fbfbfb;">
+                                <p class="small mb-0">Thank you, I really like your product.</p>
+                                </div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                alt="avatar 1" style="width: 45px; height: 100%;">
+                                </div>
+                                <div class="d-flex flex-row justify-content-end mb-4">
+                                <div class="p-3 me-3 border"
+                                style="border-radius: 15px; background-color: #fbfbfb;">
+                                <p class="small mb-0">Thank you, I really like your product.</p>
+                                </div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                alt="avatar 1" style="width: 45px; height: 100%;">
+                                </div>
+                                <div class="d-flex flex-row justify-content-end mb-4">
+                                <div class="p-3 me-3 border"
+                                style="border-radius: 15px; background-color: #fbfbfb;">
+                                <p class="small mb-0">Thank you, I really like your product.</p>
+                                </div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                alt="avatar 1" style="width: 45px; height: 100%;">
+                                </div>
+                                <div class="d-flex flex-row justify-content-end mb-4">
+                                <div class="p-3 me-3 border"
+                                style="border-radius: 15px; background-color: #fbfbfb;">
+                                <p class="small mb-0">Thank you, I really like your product.</p>
+                                </div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                alt="avatar 1" style="width: 45px; height: 100%;">
+                                </div>
+                                <div class="d-flex flex-row justify-content-end mb-4">
+                                <div class="p-3 me-3 border"
+                                style="border-radius: 15px; background-color: #fbfbfb;">
+                                <p class="small mb-0">Thank you, I really like your product.</p>
+                                </div>
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                                alt="avatar 1" style="width: 45px; height: 100%;">
+                                </div>
+                                <div class="d-flex flex-row justify-content-start mb-4">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                                alt="avatar 1" style="width: 45px; height: 100%;">
+                                <div class="p-3 ms-3"
+                                style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                                <p class="small mb-0">...</p>
+                                </div>
+                                </div> *@
+                            </div>
+                        </div>
+                        <div data-mdb-input-init class="form-outline">
+                            <form class="card-footer text-muted d-flex justify-content-start align-items-center p-3" asp-action="UserSendMessage" method="post">
+                                <input type="text" asp-for="UserId" value="@Model.UserId">
+                                <input type="text" asp-for="Timetamp" value="@Model.Timetamp">
+                                <input type="text" asp-for="ConversationId" value="@Model.ConversationId">
+                                <input type="text" asp-for="IsFromShop" value="@Model.IsFromShop">
+                                <input type="text" class="form-control form-control-lg small inputChat"
+                                    id="exampleFormControlInput1" placeholder="Type message">
+                                <button id="sendButton" class="btn btn-primary" type="submit"><i
+                                        class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+</section>
+
+@section Scripts {
+    <script>
+        console.log("hello");
+        $(function () {
+            var chat = $.connection.ChatHub;
+            $.connection.hub.start().done(function () {
+                $("#sendButton").click(function () {
+                    var text = document.getElementById("exampleFormControlInput1").value;
+                    console.log(text);
+                    chat.server.s(text);
+                });
+            })
+        });
+                });
+
+        var sendButton = document.getElementById("sendButton");
+
+
+
+    </script>
+}

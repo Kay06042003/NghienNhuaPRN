@@ -1,0 +1,68 @@
+@model Mouse
+@{
+    ViewData["Title"] = "EditMouse";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">DPi:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="mouse_dpi" name="dpi_mouse" value="@Model.MouseDpi">
+        <div class="form-message text-start"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Wire length:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="mouse_wirelength" name="wirelength_mouse"
+            value="@Model.MouseWireLength">
+        <div class="form-message text-start"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Led:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="mouse_led" name="led_mouse" value="@Model.MouseLed">
+        <div class="form-message text-start"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Type battery:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="mouse_typebattery" name="typebattery_mouse"
+            value="@Model.MouseTypeBattery">
+        <div class="form-message text-start"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Weight:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="mouse_weight" name="weight_mouse" value="@Model.MouseWeight">
+        <div class="form-message text-start"></div>
+    </div>
+</div>
+
+<div class="col-md-9 row my-2 d-flex justify-content-between">
+    <div class="col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Compatibility:</label>
+    </div>
+    <div class="col-md-10">
+        <input type="text" class="form-control" id="mouse_compatibility" name="compatibility_mouse"
+            value="@Model.MouseCompatibility">
+        <div class="form-message text-start"></div>
+    </div>
+</div>
